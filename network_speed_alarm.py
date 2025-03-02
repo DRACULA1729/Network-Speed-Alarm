@@ -14,21 +14,17 @@ your_phone_number = 'The_number_you_wanna_text_on'        # Replace with your ac
 
 # Create a function to check the network speed
 def check_network_speed():
-    # Create a speedtest object
     s = speedtest.Speedtest()
-    # Perform the speed test
     s.get_servers()
     s.get_best_server()
     upload_speed = s.upload() / 1024 / 1024
     print(f"Upload speed: {upload_speed:.2f} Mbps")
     download_speed = s.download() / 1024 / 1024 
-    # Print the network speed
     print(f"Download speed: {download_speed:.2f} Mbps")
     
     # Check if the network speed is higher than the threshold
     if download_speed > threshold:
         print("Network speed is higher than the threshold")
-        # Send an SMS using ClickSend API
         send_sms(download_speed)
     else:
         print("Network speed is lower than the threshold")
@@ -41,7 +37,7 @@ def check_network_speed():
 def send_sms(speed):
     message = f"Network speed is higher than the threshold! Current speed: {speed:.2f} Mbps" #You can change it with your choice.
     
-    # Prepare the payload for the ClickSend API
+    # Payload for the ClickSend API
     payload = {
         "messages": [
             {
